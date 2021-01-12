@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      QuickTrade App
+      Selección de opciones
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,89 +10,25 @@
 <ion-content>
 
 
+  <!--Código AE9-->
+  <div *ngIf = "!oculto"> <!--Si esta oculto, todo lo demás no se muestra, porque es la etiqueta padre-->
+    <ion-card *ngFor="let item of producto"> <!--producto es una variable[] de home.page.ts-->
+      <ion-card-header>
+        <ion-card-title>{{item.nombre}}</ion-card-title>
+        
+      </ion-card-header>
 
-  <ion-list>
-    <ion-item>
-        <ion-label position="floating">Nombre<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input [(ngModel)]="nombre"></ion-input>
-    </ion-item>
+      <ion-card-content>
+        <ion-label>Descripción: {{item.descripcion}}</ion-label>
+      </ion-card-content>
 
-    <ion-item>
-        <ion-label position="floating">Descripción<ion-text color="danger">*</ion-text></ion-label>
-        <ion-textarea [(ngModel)]="descripcion"></ion-textarea>
-    </ion-item>
+      <!--Pasamos el item.id que es el atributo id del producto seleccionado. Así luego podemos sacar toda su información-->
+      <ion-button [routerLink]="['../more-details/',item.id]" routerDirection="forward" >
+        Más detalles</ion-button>  
+    </ion-card>
+  </div>
 
-    <ion-item>
-        <ion-label>Categoría</ion-label>
-          <ion-select [(ngModel)] = "Categoria">">
-            <ion-select-option value="1">Motor</ion-select-option>
-            <ion-select-option value="2">Inmobiliaria</ion-select-option>
-            <ion-select-option value="3">Tecnología</ion-select-option>
-            <ion-select-option value="4">Hogar</ion-select-option>
-          </ion-select>
-    </ion-item>
-
-    <div *ngIf="Categoria == 1">    
-      <ion-item>
-          <ion-label>Elige vehículo</ion-label>
-            <ion-select interface="popover"></ion-select>
-              <ion-select-option value="moto">Moto</ion-select-option>
-              <ion-select-option value="coche">Coche</ion-select-option>
-            </ion-select>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label position="floating">Kilometros</ion-label>
-        <ion-input type="number" [(ngModel)]="kilometros"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Año</ion-label>
-        <ion-input type="number" [(ngModel)]="anyo"></ion-input>
-      </ion-item>
-    </div>
-    
-    <div *ngIf="Categoria == 2">    
-      <ion-item>
-        <ion-label position="floating">Metros</ion-label>
-        <ion-input type="number" [(ngModel)]="metros"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Baños</ion-label>
-        <ion-input type="number"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Habitaciones</ion-label>
-        <ion-input type="number" [(ngModel)]="habitaciones"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Localidad</ion-label>
-        <ion-input type="text" [(ngModel)]="localidad"></ion-input>
-      </ion-item>
-    </div>
-    
-    <div *ngIf="Categoria == 3">    
-      <ion-item>
-          <ion-label>Estado producto</ion-label>
-            <ion-select interface="popover">
-              <ion-select-option value="perfecto" [(ngModel)]="estado">PERFECTO</ion-select-option>
-              <ion-select-option value="usado" [(ngModel)]="estado">USADO</ion-select-option>
-            </ion-select>
-      </ion-item>
-    </div>
-
-    <ion-item>
-        <ion-label position="floating">Precio<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input type="number" [(ngModel)]="precio"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" (click)="insertar()">Insertar</ion-button>
-
-  </ion-list>
-
-  
+  <ion-button expand="block" (click)="cambiarOculto()" routerLink="/listado-prod" routerDirection="forward">Listado de Productos</ion-button>
+  <ion-button expand="block" routerLink="/insertar" routerDirection="forward">Insertar Producto</ion-button>
 
 </ion-content>
