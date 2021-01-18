@@ -12,7 +12,7 @@
 
   <!--Código AE9-->
   <div *ngIf = "!oculto"> <!--Si esta oculto, todo lo demás no se muestra, porque es la etiqueta padre-->
-    <ion-card *ngFor="let item of listado-prod"> <!--producto es una variable[] de home.page.ts-->
+    <ion-card *ngFor="let item of listadoProducto"> 
       <ion-card-header>
         <ion-card-title>{{item.nombre}}</ion-card-title>
         
@@ -22,9 +22,7 @@
         <ion-label>Descripción: {{item.descripcion}}</ion-label>
       </ion-card-content>
 
-      <!--Pasamos el item.id que es el atributo id del producto seleccionado. Así luego podemos sacar toda su información-->
-      <ion-button [routerLink]="['../details/',item.id]" routerDirection="forward" >
-        Más detalles</ion-button>  
+    
     </ion-card>
   </div>
 
