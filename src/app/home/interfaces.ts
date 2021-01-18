@@ -1,10 +1,10 @@
 
 export interface IProductoHog{
-    "id": string,
+    "id": number,
     "nombre": string,
     "descripcion": string,
     "precio": number,
-    "categoria": string,
+    "categoria": number,
 }
 
 export interface IProductoTec extends IProductoHog{ 

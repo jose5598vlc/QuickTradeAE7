@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HomePage {
   titulo: string = "PRODUCTOS";
 
-  
+  id: number;
   nombre: string;
   descripcion: string;
   precio: number;
@@ -33,7 +33,7 @@ export class HomePage {
   oculto: boolean = false;
   texto: string = "ocultar";
   option: string = "";
-  id: string;
+
 
   listadoProducto: (IProductoHog | IProductoTec | IProductoInm | IProductoMot)[] = [];
 
@@ -69,7 +69,7 @@ export class HomePage {
 
   insertar() {
  
-    this.listadoProducto.push({"id" : this.listadoProducto.length+1,
+    this.listadoProducto.push({ "id" : this.listadoProducto.length+1,
                         "nombre" : this.nombre,
                         "descripcion" : this.descripcion,
                         "precio" : this.precio,
