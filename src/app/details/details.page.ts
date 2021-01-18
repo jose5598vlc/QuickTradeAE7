@@ -22,8 +22,9 @@ export class DetailsPage implements OnInit {
       this.id = +this._activatedRoute.snapshot.paramMap.get('id');  //id es el parámetro que hemos recibido del home.page
   
       //Código AE9//
+      /*
       this.res = this._listadoProducto.getProducto(this.id); //Recupera con el id facilitado, el producto con ese id de la pagina listaProductos.services
-    
+    */
   }
 
 }

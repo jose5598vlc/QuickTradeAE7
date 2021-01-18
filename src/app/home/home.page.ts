@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import {listaproductosservices} from '../services/listado-services';
 import {Router} from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { snapshotChanges } from '@angular/fire/database';
 
 
 @Component({
@@ -44,7 +45,14 @@ export class HomePage {
   }
 
   ngOnInit() {
-    this.listadoProducto = this._listadoProducto.getListasProductos();
+    
+    let ref = this._listadoProducto.getListasProductos();
+    ref.once("value", snapshot => (
+      snapshot.forach(child => {
+        console.log("he encontrado "+child.key);
+      })
+    ))
+    
   }
 
   cambiarOculto() : void {
@@ -66,16 +74,19 @@ export class HomePage {
     toast.present();
   }
   
-
+// codigo ae10, inserta a la firebase en vez de al array local definido, en este caso un producto hogar
   insertar() {
  
-    this.listadoProducto.push({ "id" : this.listadoProducto.length+1,
+    let producto : IProductoHog={ "id" : this.listadoProducto.length+1,
                         "nombre" : this.nombre,
                         "descripcion" : this.descripcion,
                         "precio" : this.precio,
                         "categoria" : this.Categoria
-  });
 
+
+  };
+
+  this._listadoProducto.setProducto(producto); // se lo pasamos del set producto definido en listado-service
   
   console.log("se ha insertado el elemento");
   }
