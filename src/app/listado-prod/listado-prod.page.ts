@@ -15,7 +15,19 @@ export class ListadoProdPage implements OnInit {
 
   constructor(private _activatedRoute: ActivatedRoute, private _listadoProducto: listaproductosservices) { }
 
+  // codigo ae10, recupera productos y muestra valores: id, nombre, descripcion,precio y categoria
   ngOnInit() {
+    
+    let ref = this._listadoProducto.getListasProductos();
+
+    ref.once("value", snapshot => (
+      snapshot.forach(child => {
+        let value = child.val();
+        this.producto.push(value);
+        console.log("he encontrado "+child.val().nombre, +child.val().id, +child.val().descripcion, + child.val().precio, +child.val().categoria);
+      })
+    ))
+    
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Key } from 'protractor';
 import { IProductoTec, IProductoHog, IProductoInm, IProductoMot } from '../home/interfaces';
 import {listaproductosservices} from '../services/listado-services';
 
@@ -25,6 +26,16 @@ export class DetailsPage implements OnInit {
       /*
       this.res = this._listadoProducto.getProducto(this.id); //Recupera con el id facilitado, el producto con ese id de la pagina listaProductos.services
     */
+
+    // codigo ae10 recuperar solo informacion sobre los que se haya hecho click
+   let ref = this._listadoProducto.getListasProductos();
+
+   ref.once("value", snapshot => (
+     snapshot.forach(child => {
+       let value = child.value();
+       console.log("he encontrado "+child.value().nombre, +child.value().id, +child.value().descripcion, + child.value().precio);
+     })
+   ))
   }
 
 }
