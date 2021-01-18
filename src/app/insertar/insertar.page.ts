@@ -24,7 +24,7 @@ motSelec: Boolean=false;
 
 
 //Datos a rellenar por el usuario
-id: string = "";
+id: number = 0;
 nombre: string = "";
 descripcion: string = "";
 precio: number = 0;
@@ -35,7 +35,7 @@ localidad: string = "";
 metros: number = 0;
 habitaciones: number = 0;
 banyos: number = 0;
-categoria: string;
+categoria: number = 0;
 
 
 
@@ -53,6 +53,7 @@ constructor(private _toastCtrl: ToastController, private _listadoProducto: lista
 }
 
 ngOnInit() {
+
 }
 
 
@@ -78,7 +79,8 @@ insertarTec(){
                                 };
                                 
 
-                               
+              this._listadoProducto.setProducto(productoTec);
+              this.presentToast();                 
   
 }
 
@@ -90,6 +92,8 @@ insertarHom(){
                                   "precio": this.precio,
                                   "categoria": this.categoria
                                 };
+                                this._listadoProducto.setProducto(productoHog);
+                                this.presentToast();
 
                               }
 
@@ -107,7 +111,8 @@ insertarInm(){
                                       "categoria": this.categoria
                                   };       
 
-
+                                  this._listadoProducto.setProducto(productoInm);
+                                  this.presentToast();
 
                             }
 
@@ -122,7 +127,8 @@ insertarMot(){
                                       "precio": this.precio,
                                       "categoria": this.categoria
                                        };
-
+                                       this._listadoProducto.setProducto(productoMot);
+                                       this.presentToast();
 
                           }
 
