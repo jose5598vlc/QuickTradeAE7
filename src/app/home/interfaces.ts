@@ -30,4 +30,9 @@ export interface IProductoMot extends IProductoHog{
     "km": number,
     "anyo": number
 }
+// codigo examen
+export interface IProductoMeGusta {
+    "id": number,
+    "nombre" : string
+}
 

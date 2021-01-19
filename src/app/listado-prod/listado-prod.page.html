@@ -16,21 +16,24 @@
     </ion-select>
   </ion-item>
 
+
   <div *ngFor="let item of producto"> 
     <div *ngIf = "option == item.categoria">
       <ion-card>
         <ion-card-header>
           <ion-card-title>Producto {{item.nombre}}</ion-card-title>
+          <!--codigo examen, boton de 'me gusta', una vez desplegado la lista de productos se muestra-->
+          <ion-button routerLink="setmeGusta()" routerDirection="forward"> Me Gusta</ion-button>
         </ion-card-header>
 
         <ion-card-content>
           <ion-label>Descripcion {{item.descripcion}}</ion-label>
         </ion-card-content>
-        
+
       </ion-card>
     </div>
   </div>
-
+ <!--codigo examen, el usuario debe poder dar me gusta a un producto y en mediante un toast sacar por pantalla mensaje-->
   <!--Botón para volver al menú principal-->
   <ion-button routerLink="/home" routerDirection="forward">Volver</ion-button>
 
